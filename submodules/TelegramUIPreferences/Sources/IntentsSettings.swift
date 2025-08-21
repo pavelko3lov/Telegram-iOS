@@ -9,19 +9,21 @@ public struct IntentsSettings: Codable, Equatable {
     public let contacts: Bool
     public let privateChats: Bool
     public let savedMessages: Bool
+    public let bookmarks: Bool
     public let groups: Bool
     public let onlyShared: Bool
     
     public static var defaultSettings: IntentsSettings {
-        return IntentsSettings(initiallyReset: false, account: nil, contacts: true, privateChats: false, savedMessages: true, groups: false, onlyShared: false)
+        return IntentsSettings(initiallyReset: false, account: nil, contacts: true, privateChats: false, savedMessages: true, bookmarks: true, groups: false, onlyShared: false)
     }
     
-    public init(initiallyReset: Bool, account: EnginePeer.Id?, contacts: Bool, privateChats: Bool, savedMessages: Bool, groups: Bool, onlyShared: Bool) {
+    public init(initiallyReset: Bool, account: EnginePeer.Id?, contacts: Bool, privateChats: Bool, savedMessages: Bool, bookmarks: Bool, groups: Bool, onlyShared: Bool) {
         self.initiallyReset = initiallyReset
         self.account = account
         self.contacts = contacts
         self.privateChats = privateChats
         self.savedMessages = savedMessages
+        self.bookmarks = bookmarks
         self.groups = groups
         self.onlyShared = onlyShared
     }
@@ -34,6 +36,7 @@ public struct IntentsSettings: Codable, Equatable {
         self.contacts = try container.decodeIfPresent(Bool.self, forKey: "contacts") ?? true
         self.privateChats = try container.decodeIfPresent(Bool.self, forKey: "privateChats") ?? false
         self.savedMessages = try container.decodeIfPresent(Bool.self, forKey: "savedMessages") ?? true
+        self.bookmarks = try container.decodeIfPresent(Bool.self, forKey: "bookmarks") ?? true
         self.groups = try container.decodeIfPresent(Bool.self, forKey: "groups") ?? false
         self.onlyShared = try container.decodeIfPresent(Bool.self, forKey: "onlyShared") ?? false
     }
@@ -46,36 +49,37 @@ public struct IntentsSettings: Codable, Equatable {
         try container.encode(self.contacts, forKey: "contacts")
         try container.encode(self.privateChats, forKey: "privateChats")
         try container.encode(self.savedMessages, forKey: "savedMessages")
+        try container.encode(self.bookmarks, forKey: "bookmarks")
         try container.encode(self.groups, forKey: "groups")
         try container.encode(self.onlyShared, forKey: "onlyShared")
     }
     
     public static func ==(lhs: IntentsSettings, rhs: IntentsSettings) -> Bool {
-        return lhs.initiallyReset == rhs.initiallyReset && lhs.account == rhs.account && lhs.contacts == rhs.contacts && lhs.privateChats == rhs.privateChats && lhs.savedMessages == rhs.savedMessages && lhs.groups == rhs.groups && lhs.onlyShared == rhs.onlyShared
+        return lhs.initiallyReset == rhs.initiallyReset && lhs.account == rhs.account && lhs.contacts == rhs.contacts && lhs.privateChats == rhs.privateChats && lhs.savedMessages == rhs.savedMessages && lhs.bookmarks == rhs.bookmarks && lhs.groups == rhs.groups && lhs.onlyShared == rhs.onlyShared
     }
     
     public func withUpdatedAccount(_ account: EnginePeer.Id?) -> IntentsSettings {
-        return IntentsSettings(initiallyReset: self.initiallyReset, account: account, contacts: self.contacts, privateChats: self.privateChats, savedMessages: self.savedMessages, groups: self.groups, onlyShared: self.onlyShared)
+        return IntentsSettings(initiallyReset: self.initiallyReset, account: account, contacts: self.contacts, privateChats: self.privateChats, savedMessages: self.savedMessages, bookmarks: self.bookmarks, groups: self.groups, onlyShared: self.onlyShared)
     }
     
     public func withUpdatedContacts(_ contacts: Bool) -> IntentsSettings {
-        return IntentsSettings(initiallyReset: self.initiallyReset, account: self.account, contacts: contacts, privateChats: self.privateChats, savedMessages: self.savedMessages, groups: self.groups, onlyShared: self.onlyShared)
+        return IntentsSettings(initiallyReset: self.initiallyReset, account: self.account, contacts: contacts, privateChats: self.privateChats, savedMessages: self.savedMessages, bookmarks: self.bookmarks, groups: self.groups, onlyShared: self.onlyShared)
     }
     
     public func withUpdatedPrivateChats(_ privateChats: Bool) -> IntentsSettings {
-        return IntentsSettings(initiallyReset: self.initiallyReset, account: self.account, contacts: self.contacts, privateChats: privateChats, savedMessages: self.savedMessages, groups: self.groups, onlyShared: self.onlyShared)
+        return IntentsSettings(initiallyReset: self.initiallyReset, account: self.account, contacts: self.contacts, privateChats: privateChats, savedMessages: self.savedMessages, bookmarks: self.bookmarks, groups: self.groups, onlyShared: self.onlyShared)
     }
     
     public func withUpdatedSavedMessages(_ savedMessages: Bool) -> IntentsSettings {
-        return IntentsSettings(initiallyReset: self.initiallyReset, account: self.account, contacts: self.contacts, privateChats: self.privateChats, savedMessages: savedMessages, groups: self.groups, onlyShared: self.onlyShared)
+        return IntentsSettings(initiallyReset: self.initiallyReset, account: self.account, contacts: self.contacts, privateChats: self.privateChats, savedMessages: savedMessages, bookmarks: self.bookmarks, groups: self.groups, onlyShared: self.onlyShared)
     }
     
     public func withUpdatedGroups(_ groups: Bool) -> IntentsSettings {
-        return IntentsSettings(initiallyReset: self.initiallyReset, account: self.account, contacts: self.contacts, privateChats: self.privateChats, savedMessages: self.savedMessages, groups: groups, onlyShared: self.onlyShared)
+        return IntentsSettings(initiallyReset: self.initiallyReset, account: self.account, contacts: self.contacts, privateChats: self.privateChats, savedMessages: self.savedMessages, bookmarks: self.bookmarks, groups: groups, onlyShared: self.onlyShared)
     }
     
     public func withUpdatedOnlyShared(_ onlyShared: Bool) -> IntentsSettings {
-        return IntentsSettings(initiallyReset: self.initiallyReset, account: self.account, contacts: self.contacts, privateChats: self.privateChats, savedMessages: self.savedMessages, groups: self.groups, onlyShared: onlyShared)
+        return IntentsSettings(initiallyReset: self.initiallyReset, account: self.account, contacts: self.contacts, privateChats: self.privateChats, savedMessages: self.savedMessages, bookmarks: self.bookmarks, groups: self.groups, onlyShared: onlyShared)
     }
 }
 

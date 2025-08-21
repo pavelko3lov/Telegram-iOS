@@ -3079,9 +3079,10 @@ Unused sets are archived when you add more.";
 
 "Conversation.StopLiveLocation" = "Stop Sharing";
 
-"Settings.SavedMessages" = "Saved Messages";
-"Conversation.SavedMessages" = "Saved Messages";
-"DialogList.SavedMessages" = "Saved Messages";
+"Settings.SavedMessages" = "Saved Messages3";
+"Settings.Bookmarks" = "Bookmarks";
+"Conversation.SavedMessages" = "Saved Messages4";
+"DialogList.SavedMessages" = "Saved Messages5";
 
 "MediaPicker.TapToUngroupDescription" = "Tap to send media separately";
 "MediaPicker.GroupDescription" = "Group media into one message";
@@ -5102,7 +5103,8 @@ Sorry for the inconvenience.";
 "IntentsSettings.MainAccountInfo" = "Choose an account for Siri and share suggestions.";
 "IntentsSettings.SuggestedChats" = "Suggested Chats";
 "IntentsSettings.SuggestedChatsContacts" = "Contacts";
-"IntentsSettings.SuggestedChatsSavedMessages" = "Saved Messages";
+"IntentsSettings.SuggestedChatsSavedMessages" = "Saved Messages2";
+"IntentsSettings.SuggestedChatsBookmarks" = "Bookmarks";
 "IntentsSettings.SuggestedChatsPrivateChats" = "Private Chats";
 "IntentsSettings.SuggestedChatsGroups" = "Groups";
 "IntentsSettings.SuggestedChatsInfo" = "Archived chats will not be suggested.";

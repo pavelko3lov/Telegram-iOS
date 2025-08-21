@@ -962,6 +962,9 @@ private func settingsItems(data: PeerInfoScreenData?, context: AccountContext, p
     items[.shortcuts]!.append(PeerInfoScreenDisclosureItem(id: 1, text: presentationData.strings.Settings_SavedMessages, icon: PresentationResourcesSettings.savedMessages, action: {
         interaction.openSettings(.savedMessages)
     }))
+    items[.shortcuts]!.append(PeerInfoScreenDisclosureItem(id: 5, text: presentationData.strings.Settings_Bookmarks, icon: PresentationResourcesSettings.bookmarks, action: {
+        interaction.openSettings(.savedMessages)
+    }))
     items[.shortcuts]!.append(PeerInfoScreenDisclosureItem(id: 2, text: presentationData.strings.CallSettings_RecentCalls, icon: PresentationResourcesSettings.recentCalls, action: {
         interaction.openSettings(.recentCalls)
     }))

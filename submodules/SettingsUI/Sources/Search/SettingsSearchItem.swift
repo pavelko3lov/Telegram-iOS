@@ -23,6 +23,8 @@ extension SettingsSearchableItemIcon {
                 return PresentationResourcesSettings.proxy
             case .savedMessages:
                 return PresentationResourcesSettings.savedMessages
+            case .bookmarks:
+                return PresentationResourcesSettings.bookmarks
             case .calls:
                 return PresentationResourcesSettings.recentCalls
             case .stickers:

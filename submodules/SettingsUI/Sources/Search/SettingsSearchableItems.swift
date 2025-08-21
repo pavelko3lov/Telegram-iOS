@@ -28,6 +28,7 @@ enum SettingsSearchableItemIcon {
     case profile
     case proxy
     case savedMessages
+    case bookmarks
     case calls
     case stickers
     case notifications
@@ -50,6 +51,7 @@ public enum SettingsSearchableItemId: Hashable {
     case profile(Int32)
     case proxy(Int32)
     case savedMessages(Int32)
+    case bookmarks(Int32)
     case calls(Int32)
     case stickers(Int32)
     case notifications(Int32)
@@ -107,6 +109,8 @@ public enum SettingsSearchableItemId: Hashable {
             return 19
         case .stories:
             return 20
+        case .bookmarks:
+            return 21
         }
     }
     
@@ -115,6 +119,7 @@ public enum SettingsSearchableItemId: Hashable {
             case let .profile(id),
                  let .proxy(id),
                  let .savedMessages(id),
+                 let .bookmarks(id),
                  let .calls(id),
                  let .stickers(id),
                  let .notifications(id),

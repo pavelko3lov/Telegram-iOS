@@ -15,10 +15,11 @@ build --features=debug_prefix_map_pwd_is_dot
 build --features=swift.cacheable_swiftmodules
 build --features=swift.debug_prefix_map
 build --features=swift.enable_vfsoverlays
+build --features=swift.emit_swiftsourceinfo
+build --features=swift.emit_swiftdoc
 
 build --strategy=Genrule=standalone
 build --spawn_strategy=standalone
 
 build --strategy=SwiftCompile=standalone
 build --define RULES_SWIFT_BUILD_DUMMY_WORKER=1
-

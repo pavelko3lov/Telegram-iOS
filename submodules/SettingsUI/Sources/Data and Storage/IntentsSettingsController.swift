@@ -39,6 +39,7 @@ private enum IntentsSettingsControllerEntry: ItemListNodeEntry {
     case chatsHeader(PresentationTheme, String)
     case contacts(PresentationTheme, String, Bool)
     case savedMessages(PresentationTheme, String, Bool)
+    case bookmarks(PresentationTheme, String, Bool)
     case privateChats(PresentationTheme, String, Bool)
     case groups(PresentationTheme, String, Bool)
     case chatsInfo(PresentationTheme, String)
@@ -53,7 +54,7 @@ private enum IntentsSettingsControllerEntry: ItemListNodeEntry {
         switch self {
             case .accountHeader, .account, .accountInfo:
                 return IntentsSettingsSection.account.rawValue
-            case .chatsHeader, .contacts, .savedMessages, .privateChats, .groups, .chatsInfo:
+            case .chatsHeader, .contacts, .savedMessages, .bookmarks, .privateChats, .groups, .chatsInfo:
                    return IntentsSettingsSection.chats.rawValue
             case .suggestHeader, .suggestAll, .suggestOnlyShared:
                 return IntentsSettingsSection.suggest.rawValue
@@ -90,6 +91,8 @@ private enum IntentsSettingsControllerEntry: ItemListNodeEntry {
                 return 1009
             case .resetAll:
                 return 1010
+            case .bookmarks:
+                return 1011
         }
     }
     
@@ -128,6 +131,12 @@ private enum IntentsSettingsControllerEntry: ItemListNodeEntry {
                 }
             case let .savedMessages(lhsTheme, lhsText, lhsValue):
                 if case let .savedMessages(rhsTheme, rhsText, rhsValue) = rhs, lhsTheme === rhsTheme, lhsText == rhsText, lhsValue == rhsValue {
+                    return true
+                } else {
+                    return false
+                }
+            case let .bookmarks(lhsTheme, lhsText, lhsValue):
+                if case let .bookmarks(rhsTheme, rhsText, rhsValue) = rhs, lhsTheme === rhsTheme, lhsText == rhsText, lhsValue == rhsValue {
                     return true
                 } else {
                     return false
@@ -202,6 +211,10 @@ private enum IntentsSettingsControllerEntry: ItemListNodeEntry {
                 return ItemListSwitchItem(presentationData: presentationData, title: text, value: value, enableInteractiveChanges: true, enabled: true, sectionId: self.section, style: .blocks, updated: { value in
                     arguments.updateSettings { $0.withUpdatedSavedMessages(value) }
                 })
+            case let .bookmarks(_, text, value):
+                return ItemListSwitchItem(presentationData: presentationData, title: text, value: value, enableInteractiveChanges: true, enabled: true, sectionId: self.section, style: .blocks, updated: { value in
+                    arguments.updateSettings { $0.withUpdatedSavedMessages(value) }
+                })
             case let .privateChats(_, text, value):
                 return ItemListSwitchItem(presentationData: presentationData, title: text, value: value, enableInteractiveChanges: true, enabled: true, sectionId: self.section, style: .blocks, updated: { value in
                     arguments.updateSettings { $0.withUpdatedPrivateChats(value) }
@@ -247,6 +260,7 @@ private func intentsSettingsControllerEntries(context: AccountContext, presentat
     entries.append(.chatsHeader(presentationData.theme, presentationData.strings.IntentsSettings_SuggestedChats.uppercased()))
     entries.append(.contacts(presentationData.theme, presentationData.strings.IntentsSettings_SuggestedChatsContacts, settings.contacts))
     entries.append(.savedMessages(presentationData.theme, presentationData.strings.IntentsSettings_SuggestedChatsSavedMessages, settings.savedMessages))
+    entries.append(.bookmarks(presentationData.theme, presentationData.strings.IntentsSettings_SuggestedChatsBookmarks, settings.bookmarks))
     entries.append(.privateChats(presentationData.theme, presentationData.strings.IntentsSettings_SuggestedChatsPrivateChats, settings.privateChats))
     entries.append(.groups(presentationData.theme, presentationData.strings.IntentsSettings_SuggestedChatsGroups, settings.groups))
     

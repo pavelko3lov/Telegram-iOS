@@ -3019,7 +3019,7 @@ private func extractAccountManagerState(records: AccountRecordsView<TelegramAcco
                     }
                 }
                 transaction.updateSharedData(ApplicationSpecificSharedDataKeys.intentsSettings, { _ in
-                    return PreferencesEntry(IntentsSettings(initiallyReset: true, account: context.account.peerId, contacts: settings.contacts, privateChats: settings.privateChats, savedMessages: settings.savedMessages, groups: settings.groups, onlyShared: settings.onlyShared))
+                    return PreferencesEntry(IntentsSettings(initiallyReset: true, account: context.account.peerId, contacts: settings.contacts, privateChats: settings.privateChats, savedMessages: settings.savedMessages, bookmarks: settings.bookmarks, groups: settings.groups, onlyShared: settings.onlyShared))
                 })
             }
         }).start()
